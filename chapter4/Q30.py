@@ -1,4 +1,5 @@
 import re
+import argparse
 
 def trans_dict(line):
     line_list = []
@@ -11,9 +12,18 @@ def trans_dict(line):
 
     return line_list
 
+def parse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('file')
+
+    args = parser.parse_args()
+
+    return args
 
 if __name__ == '__main__':
-    with open('neko.txt.mecab', 'r') as f:
+    args = parse()
+    with open(args.file, 'r') as f:
         lines = f.read().split('EOS\n')
 
     lines = list(filter(lambda x: x != '', lines))

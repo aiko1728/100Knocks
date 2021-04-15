@@ -1,4 +1,4 @@
-from Q30 import trans_dict
+from Q30 import trans_dict, parse
 import collections
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -15,7 +15,8 @@ def word_counter(lines):
     
     return result
 
-with open('neko.txt.mecab', 'r') as f:
+args = parse()
+with open(args.file, 'r') as f:
     lines = f.read().split('EOS\n')
 
 lines = list(filter(lambda x: x != '', lines))
