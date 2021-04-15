@@ -36,4 +36,4 @@ fig = plt.figure()
 plt.bar(t, s)
 plt.show()
 
-fig.savefig('neko.png')
+fig.savefig(args.q37)

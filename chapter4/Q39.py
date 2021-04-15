@@ -30,4 +30,4 @@ fig = plt.figure()
 plt.scatter(np.log(range(1, len(num)+1)), np.log(num))
 plt.show()
 
-fig.savefig('log.png')
+fig.savefig(args.q39)

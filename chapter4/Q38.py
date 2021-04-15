@@ -29,4 +29,4 @@ fig = plt.figure()
 plt.hist(num.values(),bins=10,range=(1,10))
 plt.show()
 
-fig.savefig('hist.png')
+fig.savefig(args.q38)

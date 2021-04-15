@@ -34,4 +34,4 @@ fig = plt.figure()
 plt.bar(t, s)
 plt.show()
 
-fig.savefig('count.png')
+fig.savefig(args.q36)
