@@ -1,10 +1,21 @@
-from Q30 import trans_dict, parse
+from Q30 import trans_dict
 import collections
 import matplotlib.pyplot as plt
 import seaborn as sns
+import argparse
 #import japanize_matplotlib
 
 sns.set(font='IPAGothic')
+
+def parse():
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument('file')
+    parser.add_argument('--q37', help = 'image file for Q37')
+
+    args = parser.parse_args()
+
+    return args
 
 def neko_counter(lines):
     tmp = []
@@ -16,24 +27,25 @@ def neko_counter(lines):
     result = collections.Counter(tmp)            
     
     return result
-    
-args = parse()
-with open(args.file, 'r') as f:
-    lines = f.read().split('EOS\n')
 
-lines = list(filter(lambda x: x != '', lines))
-result = [trans_dict(line) for line in lines]
+if __name__ == '__main__':
+    args = parse()
+    with open(args.file, 'r') as f:
+        lines = f.read().split('EOS\n')
 
-num = neko_counter(result)
+    lines = list(filter(lambda x: x != '', lines))
+    result = [trans_dict(line) for line in lines]
 
-_list = list(zip(*num.most_common(10)))
+    num = neko_counter(result)
 
-t = _list[0]
-s = _list[1]
+    word_list = list(zip(*num.most_common(10)))
 
-fig = plt.figure()
+    t = word_list[0]
+    s = word_list[1]
 
-plt.bar(t, s)
-plt.show()
+    fig = plt.figure()
 
-fig.savefig(args.q37)
+    plt.bar(t, s)
+    plt.show()
+
+    fig.savefig(args.q37)
