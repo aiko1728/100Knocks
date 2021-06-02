@@ -10,13 +10,14 @@ def word_counter(lines):
     
     return result
 
-args = parse()
-with open(args.file, 'r') as f:
-    lines = f.read().split('EOS\n')
+if __name__ == '__main__':
+    args = parse()
+    with open(args.file, 'r') as f:
+        lines = f.read().split('EOS\n')
 
-lines = list(filter(lambda x: x != '', lines))
-result = [trans_dict(line) for line in lines]
+    lines = list(filter(lambda x: x != '', lines))
+    result = [trans_dict(line) for line in lines]
 
-num = word_counter(result)
+    num = word_counter(result)
 
-print(num)
+    print(num)
