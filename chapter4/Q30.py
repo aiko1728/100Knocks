@@ -3,10 +3,8 @@ import argparse
 
 def trans_dict(line):
     line_list = []
-    for word in line.split('\n'):
+    for word in line.rstrip('\n').split('\n'):
         data = re.split('[\t|,]', word)
-        if len(data) < 5:
-            continue
         word_dict = {'surface' : data[0], 'base' : data[7], 'pos' : data[1], 'pos1' : data[2]}
         line_list.append(word_dict)
 
