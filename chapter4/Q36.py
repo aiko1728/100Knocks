@@ -1,37 +1,41 @@
-from Q30 import trans_dict, parse
+from Q30 import trans_dict
+from Q35 import word_counter
 import collections
 import matplotlib.pyplot as plt
 import seaborn as sns
+import argparse
 #import japanize_matplotlib
 
 sns.set(font='IPAGothic')
 
-def word_counter(lines):
-    tmp = []
-    for line in lines:
-        for i in range(len(line)):
-            tmp.append(line[i]['base'])
-    result = collections.Counter(tmp)            
-    
-    return result
+def parse():
+    parser = argparse.ArgumentParser()
 
-args = parse()
-with open(args.file, 'r') as f:
-    lines = f.read().split('EOS\n')
+    parser.add_argument('file')
+    parser.add_argument('--q36', help = 'image file for Q36')
 
-lines = list(filter(lambda x: x != '', lines))
-result = [trans_dict(line) for line in lines]
+    args = parser.parse_args()
 
-num = word_counter(result)
+    return args
 
-_list = list(zip(*num.most_common(10)))
+if __name__ == '__main__':
+    args = parse()
+    with open(args.file, 'r') as f:
+        lines = f.read().split('EOS\n')
 
-t = _list[0]
-s = _list[1]
+    lines = list(filter(lambda x: x != '', lines))
+    result = [trans_dict(line) for line in lines]
 
-fig = plt.figure()
+    num = word_counter(result)
 
-plt.bar(t, s)
-plt.show()
+    word_list = list(zip(*num.most_common(10)))
 
-fig.savefig(args.q36)
+    t = word_list[0]
+    s = word_list[1]
+
+    fig = plt.figure()
+
+    plt.bar(t, s)
+    plt.show()
+
+    fig.savefig(args.q36)
