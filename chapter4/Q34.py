@@ -15,13 +15,14 @@ def extract(lines):
                 
     return noun
 
-args = parse()
-with open(args.file, 'r') as f:
-    lines = f.read().split('EOS\n')
+if __name__ == '__main__':
+    args = parse()
+    with open(args.file, 'r') as f:
+        lines = f.read().split('EOS\n')
 
-lines = list(filter(lambda x: x != '', lines))
-result = [trans_dict(line) for line in lines]
+    lines = list(filter(lambda x: x != '', lines))
+    result = [trans_dict(line) for line in lines]
 
-noun = extract(result)
+    noun = extract(result)
 
-print(noun)
+    print(noun)
