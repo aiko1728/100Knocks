@@ -16,10 +16,6 @@ def parse():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('file')
-    parser.add_argument('--q36', help = 'image file for Q36')
-    parser.add_argument('--q37', help = 'image file for Q37')
-    parser.add_argument('--q38', help = 'image file for Q38')
-    parser.add_argument('--q39', help = 'image file for Q39')
 
     args = parser.parse_args()
 
